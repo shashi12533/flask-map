@@ -17,6 +17,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
-    "leaflet": "^1.0.3"
+    "leaflet": "^1.0.3",
+    "leaflet-ajax": "^2.1.0"
   }
 }

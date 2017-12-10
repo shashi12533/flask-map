@@ -8,6 +8,17 @@ var map = new L.Map('map', {
     detectRetina: true
 });
 
+// $.getJSON("/static/js/cupcakes.json", function(data) {
+//     var geojson = L.geoJson(data, {
+//         onEachFeature: function (feature, layer) {
+//             layer.bindPopup(feature.properties.name);
+//         }
+//     });
+//     var map = L.map('map').fitBounds(geojson.getBounds());
+//     cupcakeTiles.addTo(map);
+//     geojson.addTo(map);
+// });
+
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -16,6 +27,13 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
     id: 'mapbox.streets'
 }).addTo(map);
 
+//$.getJSON("/static/js/tracts.json", function(data) { addDataToMap(data, map); });
 
-
-
+$.getJSON("/static/js/cupcakes.json", function(data) {
+    var geojson = L.geoJson(data, {
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }).addTo(map);
+    map.fitBounds(geojson.getBounds());
+});
